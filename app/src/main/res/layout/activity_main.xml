@@ -8,14 +8,15 @@
     android:layout_height="match_parent"
     tools:context="com.bwie.demo.MainActivity">
 
-    <com.bwie.demo.BallView
+    <com.bwie.demo.MyCircleView
         android:id="@+id/cl"
         android:background="#ff00ff00"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:ny="#ff00ff"
-        app:wy="#ffff00"
-        app:textsize="10dp"
+        app:mPaint1="#ff00"
+        app:wmPaint2="#aaccdd"
+        app:text="圆环"
+        app:mToast="小圆内"
         />
 
 

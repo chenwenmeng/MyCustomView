@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <declare-styleable name="Circle">
-        <attr name="img" format="reference" />
+    <declare-styleable name="MyCircleView">
+        <attr name="mToast" format="string" />
         <attr name="text" format="string"></attr>
-        <attr name="ny" format="color"></attr>
-        <attr name="wy" format="color"></attr>
-        <attr name="textsize" format="dimension"></attr>
+        <attr name="mPaint1" format="color"></attr>
+        <attr name="wmPaint2" format="color"></attr>
+        <attr name="radius1" format="float"></attr>
+        <attr name="t1" format="string"></attr>
     </declare-styleable>
 </resources>
