@@ -48,6 +48,7 @@ MyCircleView extends View {
     public MyCircleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
+        //获取自定义属性
         TypedArray typedArray=context.obtainStyledAttributes(attrs,R.styleable.MyCircleView);
         mColor1=typedArray.getColor(R.styleable.MyCircleView_mPaint1,Color.WHITE);
         mColor2=typedArray.getColor(R.styleable.MyCircleView_wmPaint2,Color.WHITE);
@@ -83,22 +84,27 @@ MyCircleView extends View {
         //初始化Path
         greatPath = new Path();
         smallPath = new Path();
-        //给画笔1设置颜色
-        mPaint1.setColor(mColor1);
+
         //给大圆路径设置参数
         greatPath.addCircle(getWidth() / 2, getHeight() / 2, 400, Path.Direction.CW);
+
+        //给画笔1设置颜色
+        mPaint1.setColor(mColor1);
         // ▼将剪裁边界设置为视图大小
         Region globalRegion = new Region(-getWidth(), -getHeight(), getWidth(), getHeight());
         //将path设置进入Region
         greatRegion.setPath(greatPath, globalRegion);
+
         //给画笔2设置颜色
         mPaint2.setColor(mColor2);
         //给小圆路径设置参数
         smallPath.addCircle(getWidth() / 2, getHeight() / 2, 200, Path.Direction.CW);
         smallRegion.setPath(smallPath, globalRegion);
+
         //绘制大圆小圆
         canvas.drawPath(greatPath, mPaint1);
         canvas.drawPath(smallPath, mPaint2);
+
         //初始化绘制文本的画笔及参数
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
@@ -114,8 +120,10 @@ MyCircleView extends View {
     public boolean onTouchEvent(MotionEvent event) {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            //获取手指触摸的X、Y坐标点
             int x = (int) event.getX();
             int y = (int) event.getY();
+            //判断所在位置并吐司
             if (smallRegion.contains(x, y)) {
 
                 Toast.makeText(getContext(), mtoast, Toast.LENGTH_SHORT).show();
