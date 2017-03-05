@@ -45,6 +45,7 @@ MyCircleView extends View {
     private int mColor1;
     private int mColor2;
     private float aFloat;
+
     public MyCircleView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
@@ -85,13 +86,13 @@ MyCircleView extends View {
         greatPath = new Path();
         smallPath = new Path();
 
-        //给大圆路径设置参数
-        greatPath.addCircle(getWidth() / 2, getHeight() / 2, 400, Path.Direction.CW);
+        // ▼将剪裁边界设置为视图大小
+        Region globalRegion = new Region(-getWidth(), -getHeight(), getWidth(), getHeight());
 
         //给画笔1设置颜色
         mPaint1.setColor(mColor1);
-        // ▼将剪裁边界设置为视图大小
-        Region globalRegion = new Region(-getWidth(), -getHeight(), getWidth(), getHeight());
+        //给大圆路径设置参数
+        greatPath.addCircle(getWidth() / 2, getHeight() / 2, 400, Path.Direction.CW);
         //将path设置进入Region
         greatRegion.setPath(greatPath, globalRegion);
 
@@ -112,8 +113,11 @@ MyCircleView extends View {
         paint.setTextSize((float) 40);
         //获取文本宽度
         float measureText = paint.measureText(text);
+        //获取文本高度
+        Paint.FontMetrics fontMetrics = paint.getFontMetrics();
+        float ceil = (float) Math.ceil(fontMetrics.descent - fontMetrics.ascent);
         //绘制文本
-        canvas.drawText(text, (getWidth() / 2 - measureText / 2), (getHeight() / 2), paint);
+        canvas.drawText(text, (getWidth() / 2 - measureText / 2), (getHeight() / 2-ceil/2), paint);
     }
 
     @Override

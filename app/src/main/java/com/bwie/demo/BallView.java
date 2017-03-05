@@ -57,7 +57,6 @@ BallView extends View {
     //圆的半径
     float r = 100;
 
-
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
